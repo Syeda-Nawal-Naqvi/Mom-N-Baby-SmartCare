@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+    <!-- Added for the country picker's "Use my current location" option
+         (registration, Settings, and admin shop location assignment).
+         COARSE is enough to resolve a country via reverse-geocoding —
+         FINE is included too since some OEMs only honor FINE requests
+         from the permission dialog. Neither enables background location
+         tracking; both are one-shot, foreground-only reads via
+         geolocator's getCurrentPosition(). -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:label="mother_and_baby_smartcare"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher"
+        android:enableOnBackInvokedCallback="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2"/>
+
+        <!-- Required by flutter_email_sender to attach the generated PDF
+             to the email intent handed off to the mail app. Without this
+             provider, the "Share PDF" feature will fail to attach the
+             file (or crash) even though getTemporaryDirectory() itself
+             succeeds. Points at res/xml/file_paths.xml. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- NOTE: the flutter_local_notifications receivers that used to be
+             declared here were REMOVED. That package is not even listed as
+             a dependency in pubspec.yaml — these were dead leftovers from
+             an earlier implementation and served no purpose.
+
+             The `alarm` package's service/receiver declarations (Alarm
+             Service, NotificationOnKillService, AlarmReceiver, BootReceiver)
+             and the reminder/alarm-specific permissions (WAKE_LOCK,
+             RECEIVE_BOOT_COMPLETED, SCHEDULE_EXACT_ALARM, USE_EXACT_ALARM,
+             VIBRATE, USE_FULL_SCREEN_INTENT, FOREGROUND_SERVICE*,
+             ACCESS_NOTIFICATION_POLICY, SET_ALARM,
+             REQUEST_IGNORE_BATTERY_OPTIMIZATIONS) have also been removed
+             per request. If reminders/alarms are still meant to work,
+             AlarmClockService, the `alarm` dependency, and the
+             Alarm.ringing listener in main.dart must be removed too —
+             otherwise that code will call into permissions/components
+             that no longer exist in this manifest. -->
+
+    </application>
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+
+        <!-- Required by flutter_email_sender (Android 11+ package
+             visibility) so the app can find and hand off to an installed
+             mail app (Gmail, Outlook, etc.) when sharing a PDF report. -->
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
+        </intent>
+    </queries>
+
+</manifest>

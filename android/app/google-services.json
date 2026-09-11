@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "100960866797",
+    "project_id": "mother-and-baby-smartcare-app",
+    "storage_bucket": "mother-and-baby-smartcare-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100960866797:android:a26c23acc82da4b46457e4",
+        "android_client_info": {
+          "package_name": "com.example.mother_and_baby_smartcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100960866797-76ncompbtth1gj8a67jdv3ubfdf1f8u7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mother_and_baby_smartcare",
+            "certificate_hash": "f1d8bd41c84da97e568578a03846c5c5dc5e71b7"
+          }
+        },
+        {
+          "client_id": "100960866797-j70rvariqhij1ihh3s1g16ehsncs943i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAULqaZV3MgrIKYCwvjesecxq_MbIbo894"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100960866797-j70rvariqhij1ihh3s1g16ehsncs943i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "100960866797-7fvdp314td6l38qikvn4cnl6nn7b1e7a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.motherAndBabySmartcare"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
