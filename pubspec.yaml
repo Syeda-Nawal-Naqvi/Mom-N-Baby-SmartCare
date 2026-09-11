@@ -1,0 +1,74 @@
+name: mother_and_baby_smartcare
+description: Mother And Baby SmartCare
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  lottie: ^3.3.1
+  google_fonts: ^8.1.0
+  shared_preferences: ^2.5.3
+  flutter_screenutil: ^5.9.3
+  firebase_core: ^4.11.0
+  firebase_auth: ^6.5.3
+  cloud_firestore: ^6.6.0
+  google_sign_in: ^7.2.0
+  provider: ^6.1.5+1
+  url_launcher: ^6.3.1
+  connectivity_plus: ^7.1.1
+  intl: ^0.20.2
+
+  permission_handler: ^12.0.3
+  audioplayers: ^6.0.0   # kept — used for notification sound
+  # NEW: real OS status-bar / tray notifications, shown while the app
+  # process is alive (see local_notification_service.dart doc comment
+  # for why "even when the app is killed" is not possible without a
+  # backend + FCM).
+  flutter_local_notifications: ^18.0.1
+
+  image_picker: ^1.1.2
+
+  # Country picker "use my current location" (register screen + Settings
+  # + admin shop location assignment). geolocator gets device GPS
+  # coordinates; geocoding turns those into an ISO country code.
+  geolocator: ^13.0.2
+  geocoding: ^3.0.0
+  # NOTE: MPAndroidChart is a native Android (Kotlin/Java) charting library —
+  # it cannot be imported into a Flutter/Dart codebase at all, there is no
+  # Flutter package that wraps it. fl_chart is the Flutter-native equivalent
+  # and is what the Records & Graphs screen actually uses below.
+  fl_chart: ^1.0.0
+
+  # Share PDF feature (ShareRecords screens):
+  # NOTE: raw SMTP (the old `mailer` package) is intentionally NOT used —
+  # it required embedding a Gmail account + App Password in the app's
+  # source, which is insecure and was the actual cause of every send
+  # failing. flutter_email_sender instead opens the device's own mail
+  # app (Gmail/Outlook/Mail) with recipient, subject, body, and the PDF
+  # already attached — the user just taps Send inside that app. This is
+  # the standard, reliable way production apps do this.
+  flutter_email_sender: ^10.0.1 # opens native mail app compose screen
+  path_provider: ^2.1.4         # writes the PDF to a temp file to attach
+  pdf: ^3.11.1                  # builds the PDF report (Weight/Vaccination/etc.)
+  email_validator: ^3.0.0       # validates the recipient email address
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/lottie/
+    - assets/icons/
+    - assets/sounds/
